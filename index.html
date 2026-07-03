@@ -98,6 +98,47 @@
     .photo-card .tag { font-size: 11px; letter-spacing: 0.06em; color: #f0ece6; opacity: 0; transition: opacity 0.3s; }
     .photo-card:hover .tag { opacity: 1; }
 
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 17, 14, 0.92);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 4px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      font-size: 32px;
+      color: #f0ece6;
+      cursor: pointer;
+      line-height: 1;
+      background: none;
+      border: none;
+    }
+    .lightbox-close:hover { color: #c9c0b4; }
+    .lightbox-caption {
+      position: absolute;
+      bottom: 28px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      color: #d5cfc6;
+    }
+
     /* ABOUT */
     .about {
       display: flex;
@@ -182,51 +223,62 @@
   <div class="filter-bar">
     <button class="filter-btn active" data-filter="all">all</button>
     <button class="filter-btn" data-filter="landscape">landscape</button>
-    <button class="filter-btn" data-filter="portrait">portrait</button>
-    <button class="filter-btn" data-filter="street">street</button>
     <button class="filter-btn" data-filter="wildlife">wildlife</button>
     <button class="filter-btn" data-filter="travel">travel</button>
+    <button class="filter-btn" data-filter="national-parks">national parks</button>
+    <button class="filter-btn" data-filter="h2o">H2O</button>
   </div>
 
   <!-- GALLERY -->
   <section class="gallery" id="gallery">
     <div class="photo-card" data-category="landscape">
-      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&q=70" alt="snowy mountain peaks at night" />
+      <img src="./images/gallery/landing-page/1.jpg" alt="landscape photo 1" />
       <div class="overlay"><span class="tag">landscape</span></div>
     </div>
-    <div class="photo-card" data-category="portrait">
-      <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=70" alt="portrait in soft light" />
-      <div class="overlay"><span class="tag">portrait</span></div>
-    </div>
-    <div class="photo-card" data-category="street">
-      <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=70" alt="city skyline at dusk" />
-      <div class="overlay"><span class="tag">street</span></div>
-    </div>
     <div class="photo-card" data-category="wildlife">
-      <img src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=400&q=70" alt="fox in the wild" />
+      <img src="./images/gallery/landing-page/2.jpg" alt="wildlife photo 2" />
       <div class="overlay"><span class="tag">wildlife</span></div>
     </div>
     <div class="photo-card" data-category="travel">
-      <img src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=400&q=70" alt="coastal travel scene" />
+      <img src="./images/gallery/landing-page/3.jpg" alt="travel photo 3" />
       <div class="overlay"><span class="tag">travel</span></div>
+    </div>
+    <div class="photo-card" data-category="national-parks">
+      <img src="./images/gallery/landing-page/4.jpg" alt="national park photo 4" />
+      <div class="overlay"><span class="tag">national parks</span></div>
+    </div>
+    <div class="photo-card" data-category="h2o">
+      <img src="./images/gallery/landing-page/5.jpg" alt="water photo 5" />
+      <div class="overlay"><span class="tag">H2O</span></div>
     </div>
     <div class="photo-card" data-category="landscape">
-      <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400&q=70" alt="misty forest path" />
+      <img src="./images/gallery/landing-page/6.jpg" alt="landscape photo 6" />
       <div class="overlay"><span class="tag">landscape</span></div>
     </div>
     <div class="photo-card" data-category="wildlife">
-      <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400&q=70" alt="dog on adventure" />
+      <img src="./images/gallery/landing-page/7.jpg" alt="wildlife photo 7" />
       <div class="overlay"><span class="tag">wildlife</span></div>
     </div>
-    <div class="photo-card" data-category="street">
-      <img src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=400&q=70" alt="old town street" />
-      <div class="overlay"><span class="tag">street</span></div>
-    </div>
     <div class="photo-card" data-category="travel">
-      <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&q=70" alt="bali travel scene" />
+      <img src="./images/gallery/landing-page/8.jpg" alt="travel photo 8" />
       <div class="overlay"><span class="tag">travel</span></div>
     </div>
+    <div class="photo-card" data-category="national-parks">
+      <img src="./images/gallery/landing-page/9.jpg" alt="national park photo 9" />
+      <div class="overlay"><span class="tag">national parks</span></div>
+    </div>
+    <div class="photo-card" data-category="h2o">
+      <img src="./images/gallery/landing-page/10.jpg" alt="water photo 10" />
+      <div class="overlay"><span class="tag">H2O</span></div>
+    </div>
   </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <img id="lightboxImg" src="" alt="" />
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
 
   <!-- ABOUT -->
   <section class="about" id="about">
@@ -235,7 +287,7 @@
     </div>
     <div class="about-text">
       <h2>hello, i'm the traveler behind the jar</h2>
-      <p>an amateur photographer chasing light, stories, and the kind of stillness that only a quiet landscape can offer. every photo here is a little moment collected along the way — landscapes, faces, streets, creatures, and places that made me stop.</p>
+      <p>an amateur photographer chasing light, stories, and the kind of stillness that only a quiet landscape can offer. every photo here is a little moment collected along the way — landscapes, creatures, waters, parks, and places that made me stop.</p>
     </div>
   </section>
 
@@ -243,8 +295,7 @@
   <section class="contact" id="contact">
     <p>find me around the web</p>
     <div class="socials">
-      <a href="https://instagram.com" target="_blank">instagram</a>
-      <a href="https://vsco.co" target="_blank">vsco</a>
+      <a href="https://instagram.com/the.travel.jar" target="_blank">instagram</a>
       <a href="mailto:hello@thetraveljar.com">email</a>
     </div>
   </section>
@@ -271,6 +322,35 @@
           }
         });
       });
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const img = card.querySelector('img');
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCaption.textContent = card.dataset.category.replace('-', ' ');
+        lightbox.classList.add('open');
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightboxImg.src = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
     });
   </script>
 
